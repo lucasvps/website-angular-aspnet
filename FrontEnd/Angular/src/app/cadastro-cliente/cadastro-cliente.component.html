@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Novo Cliente</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card style="margin:32px;">
+	<form [formGroup]="form" (ngSubmit)="cadastrar()">
+
+		<mat-form-field class="full-width">
+			<input type="text" formControlName="nome" required name='nome'  matInput placeholder="Nome" >
+			<mat-error *ngIf="form.controls.nome.hasError('required')">
+				O Nome é <strong>obrigatório</strong>
+			 </mat-error>
+			 
+      
+    </mat-form-field>
+    
+    <mat-form-field class="full-width">
+			<input type="email" formControlName="email" required name='email' matInput placeholder="Email" >
+			<mat-error *ngIf="form.controls.email.hasError('required')">
+				O Email é <strong>obrigatório</strong>
+			  </mat-error>
+			  <mat-error *ngIf="form.controls.email.hasError('email')">
+				Este não é um email <strong>válido</strong>
+      		  </mat-error>
+      
+	</mat-form-field>
+
+	<h4 style="color: red;">{{error}}</h4>
+
+	<br />
+
+	<button mat-raised-button color="primary">Salvar</button>
+
+	</form>
+
+	
+
+</mat-card>

@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Pedidos de {{cliente.Name}}</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<div style="margin:32px;">
+
+	<button mat-raised-button color="primary" (click)="novoPedido()" style="margin-left:16px;">Novo Pedido</button>
+
+  <br />
+  <br />
+
+  <h3>Quantidade de pedidos : {{pedidos.length}}</h3>
+  
+  <table border="2px solid transparent" border-collapse="collapse">
+		<tr>
+      <th>Serial Number</th>
+      <th>Data</th>
+      <th>Valor Final</th>
+      <th>Produtos</th>
+		</tr>
+		
+		<tr *ngFor="let pedido of pedidos">
+      <td padding:15px >{{pedido.Number}}</td>
+      <td padding="15px">{{pedido.Date}}</td>
+      <td>R$ {{ pedido.FinalCost }}</td>
+      <td><button (click)="produtoPedido(pedido.Id, pedido.Number)" >Ver Produtos</button></td>
+      
+		</tr>
+		
+	</table>
+</div>

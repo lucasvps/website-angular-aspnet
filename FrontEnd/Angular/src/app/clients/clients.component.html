@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Clientes</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<div style="margin:32px;">
+
+	<button mat-raised-button color="primary" (click)="novo()">Cadastrar Cliente</button>
+
+	<br />
+	<br />
+	<br />
+
+
+	<table border="2px solid transparent" border-collapse="collapse">
+		<tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Pedidos</th>
+		</tr>
+		
+		<tr *ngFor="let client of clients">
+      <td padding:15px >{{client.Name}}</td>
+      <td padding="15px">{{client.Email}}</td>
+      <td><button (click)="pedidos(client)">Ver Pedidos</button></td>
+      
+		</tr>
+		
+	</table>
+
+</div>

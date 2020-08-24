@@ -1,0 +1,546 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
+
+/***/ "./node_modules/webpack/hot sync ^\\.\\/log$":
+/*!*************************************************!*\
+  !*** (webpack)/hot sync nonrecursive ^\.\/log$ ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./log": "./node_modules/webpack/hot/log.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return id;
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/webpack/hot sync ^\\.\\/log$";
+
+/***/ }),
+
+/***/ "./src/$$_lazy_route_resource lazy recursive":
+/*!**********************************************************!*\
+  !*** ./src/$$_lazy_route_resource lazy namespace object ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncaught exception popping up in devtools
+	return Promise.resolve().then(function() {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
+
+/***/ }),
+
+/***/ "./src/app/app.component.css":
+/*!***********************************!*\
+  !*** ./src/app/app.component.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/app.component.html":
+/*!************************************!*\
+  !*** ./src/app/app.component.html ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "./src/app/app.component.ts":
+/*!**********************************!*\
+  !*** ./src/app/app.component.ts ***!
+  \**********************************/
+/*! exports provided: AppComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var AppComponent = /** @class */ (function () {
+    function AppComponent() {
+        this.title = 'Angular';
+    }
+    AppComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-root',
+            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
+            styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
+        })
+    ], AppComponent);
+    return AppComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/app.module.ts":
+/*!*******************************!*\
+  !*** ./src/app/app.module.ts ***!
+  \*******************************/
+/*! exports provided: AppModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _cadastro_contato_cadastro_contato_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cadastro-contato/cadastro-contato.component */ "./src/app/cadastro-contato/cadastro-contato.component.ts");
+/* harmony import */ var _contatos_contatos_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./contatos/contatos.component */ "./src/app/contatos/contatos.component.ts");
+/* harmony import */ var _mensagens_mensagens_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mensagens/mensagens.component */ "./src/app/mensagens/mensagens.component.ts");
+/* harmony import */ var _cadastro_mensagem_cadastro_mensagem_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cadastro-mensagem/cadastro-mensagem.component */ "./src/app/cadastro-mensagem/cadastro-mensagem.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+var appRoutes = [
+    { path: 'contatos', component: _contatos_contatos_component__WEBPACK_IMPORTED_MODULE_6__["ContatosComponent"] },
+    { path: 'contatos/cadastro', component: _cadastro_contato_cadastro_contato_component__WEBPACK_IMPORTED_MODULE_5__["CadastroContatoComponent"] },
+    { path: 'contatos/:id/mensagens', component: _mensagens_mensagens_component__WEBPACK_IMPORTED_MODULE_7__["MensagensComponent"] },
+    { path: 'mensagens/cadastro', component: _cadastro_mensagem_cadastro_mensagem_component__WEBPACK_IMPORTED_MODULE_8__["CadastroMensagemComponent"] },
+    { path: '', redirectTo: '/contatos', pathMatch: 'full' }
+];
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _cadastro_contato_cadastro_contato_component__WEBPACK_IMPORTED_MODULE_5__["CadastroContatoComponent"],
+                _contatos_contatos_component__WEBPACK_IMPORTED_MODULE_6__["ContatosComponent"],
+                _mensagens_mensagens_component__WEBPACK_IMPORTED_MODULE_7__["MensagensComponent"],
+                _cadastro_mensagem_cadastro_mensagem_component__WEBPACK_IMPORTED_MODULE_8__["CadastroMensagemComponent"]
+            ],
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(appRoutes),
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
+            ],
+            providers: [],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/cadastro-contato/cadastro-contato.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/cadastro-contato/cadastro-contato.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/cadastro-contato/cadastro-contato.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/cadastro-contato/cadastro-contato.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  cadastro-contato works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/cadastro-contato/cadastro-contato.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/cadastro-contato/cadastro-contato.component.ts ***!
+  \****************************************************************/
+/*! exports provided: CadastroContatoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroContatoComponent", function() { return CadastroContatoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CadastroContatoComponent = /** @class */ (function () {
+    function CadastroContatoComponent() {
+    }
+    CadastroContatoComponent.prototype.ngOnInit = function () {
+    };
+    CadastroContatoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cadastro-contato',
+            template: __webpack_require__(/*! ./cadastro-contato.component.html */ "./src/app/cadastro-contato/cadastro-contato.component.html"),
+            styles: [__webpack_require__(/*! ./cadastro-contato.component.css */ "./src/app/cadastro-contato/cadastro-contato.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CadastroContatoComponent);
+    return CadastroContatoComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/cadastro-mensagem/cadastro-mensagem.component.css":
+/*!*******************************************************************!*\
+  !*** ./src/app/cadastro-mensagem/cadastro-mensagem.component.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/cadastro-mensagem/cadastro-mensagem.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/cadastro-mensagem/cadastro-mensagem.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  cadastro-mensagem works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/cadastro-mensagem/cadastro-mensagem.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/cadastro-mensagem/cadastro-mensagem.component.ts ***!
+  \******************************************************************/
+/*! exports provided: CadastroMensagemComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroMensagemComponent", function() { return CadastroMensagemComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CadastroMensagemComponent = /** @class */ (function () {
+    function CadastroMensagemComponent() {
+    }
+    CadastroMensagemComponent.prototype.ngOnInit = function () {
+    };
+    CadastroMensagemComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cadastro-mensagem',
+            template: __webpack_require__(/*! ./cadastro-mensagem.component.html */ "./src/app/cadastro-mensagem/cadastro-mensagem.component.html"),
+            styles: [__webpack_require__(/*! ./cadastro-mensagem.component.css */ "./src/app/cadastro-mensagem/cadastro-mensagem.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CadastroMensagemComponent);
+    return CadastroMensagemComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/contatos/contatos.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/contatos/contatos.component.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/contatos/contatos.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/contatos/contatos.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>\n\tContatos\n</h1>\n\n<ul>\n\t<li *ngFor=\"let contato of Contatos\">\n\t\t{{ contato.Nome }}\n\t</li>\n</ul>"
+
+/***/ }),
+
+/***/ "./src/app/contatos/contatos.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/contatos/contatos.component.ts ***!
+  \************************************************/
+/*! exports provided: ContatosComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContatosComponent", function() { return ContatosComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ContatosComponent = /** @class */ (function () {
+    function ContatosComponent(http, router) {
+        this.http = http;
+        this.router = router;
+        this.Contatos = [];
+        this.HttpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json'
+            })
+        };
+    }
+    ContatosComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get('http://localhost:49493/api/contatos/')
+            .subscribe(function (x) {
+            _this.Contatos = x;
+        });
+        var contato = new Contato();
+        contato.Nome = 'Contato Teste';
+        this.http.post('http://localhost:49493/api/contatos/', JSON.stringify(contato), this.HttpOptions).subscribe();
+    };
+    ContatosComponent.prototype.Selecionar = function (contato) {
+        this.router.navigate(['contatos/' + contato.Id + '/mensagens']);
+    };
+    ContatosComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-contatos',
+            template: __webpack_require__(/*! ./contatos.component.html */ "./src/app/contatos/contatos.component.html"),
+            styles: [__webpack_require__(/*! ./contatos.component.css */ "./src/app/contatos/contatos.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], ContatosComponent);
+    return ContatosComponent;
+}());
+
+var Contato = /** @class */ (function () {
+    function Contato() {
+    }
+    return Contato;
+}());
+
+
+/***/ }),
+
+/***/ "./src/app/mensagens/mensagens.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/mensagens/mensagens.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/mensagens/mensagens.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/mensagens/mensagens.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>\n\tMensagens\n</h1>\n\n<!-- <md-nav-list>\n\t<md-list-item *ngFor=\"let mensagem of Mensagens\">\n\t\t{{ mensagem.DataHora }}: {{ mensagem.Descricao }}\n\t</md-list-item>\n</md-nav-list> -->"
+
+/***/ }),
+
+/***/ "./src/app/mensagens/mensagens.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/mensagens/mensagens.component.ts ***!
+  \**************************************************/
+/*! exports provided: MensagensComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MensagensComponent", function() { return MensagensComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MensagensComponent = /** @class */ (function () {
+    // Mensagens: Mensagem[] = [];
+    // constructor(private http: Http, private router: Router, private activatedRoute: ActivatedRoute) { }
+    function MensagensComponent() {
+    }
+    MensagensComponent.prototype.ngOnInit = function () {
+        // 	let id = this.activatedRoute.snapshot.params['id'];
+        // 	this.http.get('http://localhost:49493/api/contatos/' + id + '/mensagens')
+        // 		.subscribe(x => {
+        // 			this.Mensagens = x.json() as Mensagem[];
+        // 		});
+    };
+    MensagensComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-mensagens',
+            template: __webpack_require__(/*! ./mensagens.component.html */ "./src/app/mensagens/mensagens.component.html"),
+            styles: [__webpack_require__(/*! ./mensagens.component.css */ "./src/app/mensagens/mensagens.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], MensagensComponent);
+    return MensagensComponent;
+}());
+
+// class Mensagem {
+// 	public Descricao: string;
+// 	public DataHora: Date;
+// }
+
+
+/***/ }),
+
+/***/ "./src/environments/environment.ts":
+/*!*****************************************!*\
+  !*** ./src/environments/environment.ts ***!
+  \*****************************************/
+/*! exports provided: environment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+var environment = {
+    production: false
+};
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+/***/ }),
+
+/***/ "./src/main.ts":
+/*!*********************!*\
+  !*** ./src/main.ts ***!
+  \*********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+}
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
+    .catch(function (err) { return console.error(err); });
+
+
+/***/ }),
+
+/***/ 0:
+/*!************************************************************************!*\
+  !*** multi (webpack)-dev-server/client?http://0.0.0.0:0 ./src/main.ts ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! C:\Projetos\GrafisSistemasOpen\TesteAngularWebApi\FrontEnd\Angular\node_modules\webpack-dev-server\client\index.js?http://0.0.0.0:0 */"./node_modules/webpack-dev-server/client/index.js?http://0.0.0.0:0");
+module.exports = __webpack_require__(/*! C:\Projetos\GrafisSistemasOpen\TesteAngularWebApi\FrontEnd\Angular\src\main.ts */"./src/main.ts");
+
+
+/***/ })
+
+},[[0,"runtime","vendor"]]]);
+//# sourceMappingURL=main.js.map

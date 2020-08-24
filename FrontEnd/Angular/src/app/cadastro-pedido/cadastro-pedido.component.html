@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Novo Pedido para {{cliente.Name}}</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<div style="margin:32px;">
+
+  
+  <h2>Valor do pedido : R$ {{valorTotal}}</h2>
+  <h2>Desconto aplicado : R$ {{Desconto}}</h2>
+  <h2>Valor Final : R$ {{valorTotal - Desconto}}</h2>
+
+
+
+	<table>
+		<tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th></th>
+
+		</tr>
+		
+		<tr *ngFor="let produto of produtos">
+      <td>{{produto.Name}}</td>
+      <td>{{produto.Description}}</td>
+      <td>R$ {{produto.Value}}</td>
+      <td><input (click)="getProduto(this.produto)" type="checkbox" value={{produto.Id}}></td>
+      
+		</tr>
+		
+  </table>
+  <br/>
+  <br/>
+
+  <form >
+    <h3 style="color: red;" >{{error}}</h3>
+    <mat-form-field class="full-width">
+      <input name="desconto" [(ngModel)]="desconto" type="number" matInput placeholder="Desconto" >
+    </mat-form-field>
+    
+  
+    <br/>
+    <br/>
+  
+    <button mat-raised-button color="primary" (click)="aplicarDesconto(desconto)">Aplicar Desconto</button>
+  </form>
+  <br/>
+  <br/>
+
+  <button mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
+
+</div>

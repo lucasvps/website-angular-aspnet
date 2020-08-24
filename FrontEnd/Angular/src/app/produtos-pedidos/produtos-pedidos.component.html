@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Produtos do pedido de número : {{serialNumber}}</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<div style="margin:32px;">
+
+
+	<table>
+		<tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+		</tr>
+		
+		<tr *ngFor="let produto of produtos">
+      <td>{{produto.Name}}</td>
+      <td>{{produto.Description}}</td>
+      <td>R$ {{produto.Value}}</td>
+      
+		</tr>
+		
+	</table>
+
+</div>

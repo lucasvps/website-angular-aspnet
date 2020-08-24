@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<span>Novo Produto</span>
+	</mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card style="margin:32px;">
+	<form [formGroup]="form" (ngSubmit)="cadastrar()">
+
+		<mat-form-field class="full-width">
+			<input type="text" formControlName="nome" required name='nome'  matInput placeholder="Nome" >
+			<mat-error *ngIf="form.controls.nome.hasError('required')">
+				O Nome é <strong>obrigatório</strong>
+			 </mat-error>
+			 
+      
+    </mat-form-field>
+    
+    <mat-form-field class="full-width">
+			<input type="text" formControlName="descricao" required name='descricao' matInput placeholder="Descrição" >
+			<mat-error *ngIf="form.controls.descricao.hasError('required')">
+				A descrição é <strong>obrigatória</strong>
+			  </mat-error>
+      
+    </mat-form-field>
+    
+    <mat-form-field class="full-width">
+			<input type="number" formControlName="valor" required name='valor'  matInput placeholder="Valor" >
+			<mat-error *ngIf="form.controls.valor.hasError('required')">
+				O valor é <strong>obrigatório</strong>
+			 </mat-error>
+			 
+      
+    </mat-form-field>
+
+		<br />
+		<br />
+
+		<button mat-raised-button color="primary">Salvar</button>
+
+	</form>
+
+	
+
+</mat-card>
