@@ -9,7 +9,7 @@ import { MaterialImports } from './MaterialImports';
 
 import { AppComponent } from './app.component';
 import { CadastroContatoComponent } from './cadastro-contato/cadastro-contato.component';
-import { ContatosComponent } from './contatos/contatos.component';
+import { HomeComponent } from './home/home.component';
 import { MensagensComponent } from './mensagens/mensagens.component';
 import { CadastroMensagemComponent } from './cadastro-mensagem/cadastro-mensagem.component';
 import { ClientsComponent } from './clients/clients.component';
@@ -28,27 +28,21 @@ import { ProdutosPedidosComponent } from './produtos-pedidos/produtos-pedidos.co
 
 
 const appRoutes: Routes = [
-	{ path: 'contatos', component: ContatosComponent },
-	{ path: 'contatos/cadastro', component: CadastroContatoComponent },
-	{ path: 'contatos/:id/mensagens', component: MensagensComponent },
+	{ path: 'home', component: HomeComponent},
 	{ path: 'cliente/:id/pedidos', component: PedidosComponent },
-	{ path: 'contatos/:id/mensagens/cadastro', component: CadastroMensagemComponent },
 	{ path: 'clientes', component: ClientsComponent },
 	{ path: 'clientes/cadastro', component: CadastroClienteComponent },
 	{ path: 'produtos', component: ProdutosComponent },
 	{ path: 'produtos/cadastro', component: CadastroProdutoComponent },
-	{ path: 'pedido/novo/:id', component: CadastroPedidoComponent },
-	{ path: 'pedido/produtos/:id/:serial', component: ProdutosPedidosComponent },
-	
-
-	{ path: '', redirectTo: '/contatos', pathMatch: 'full' }
+	{path : 'clientes/:id/pedido/cadastro', component: CadastroPedidoComponent},
+	{ path: 'pedido/:id/produtos', component: ProdutosPedidosComponent },
+	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		CadastroContatoComponent,
-		ContatosComponent,
 		MensagensComponent,
 		CadastroMensagemComponent,
 		ClientsComponent,
@@ -58,6 +52,7 @@ const appRoutes: Routes = [
 		ProdutosComponent,
 		CadastroProdutoComponent,
 		ProdutosPedidosComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,

@@ -15,15 +15,20 @@
 
 	<table>
 		<tr>
-      <th>Nome</th>
+      
       <th>Descrição</th>
-      <th>Valor</th>
+	  <th>Valor</th>
+	  <th>Imagem</th>
+	  
 		</tr>
 		
 		<tr *ngFor="let produto of produtos">
-      <td>{{produto.Name}}</td>
+      
       <td>{{produto.Description}}</td>
       <td>R$ {{produto.Value}}</td>
+	  <td><img height="100"  src="assets/{{produto.ImagePath}}"></td>
+	  
+	 
       
 		</tr>
 		

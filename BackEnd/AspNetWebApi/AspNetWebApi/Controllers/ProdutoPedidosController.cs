@@ -1,6 +1,7 @@
 ﻿using AspNetWebApi.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,28 +20,48 @@ namespace AspNetWebApi.Controllers
 
         [HttpPost]
         [Route("api/produtopedido")]
-        public void Post(NewProductToOrder newProductToOrder)
+        public HttpResponseMessage Post(NewProductToOrder newProductToOrder)
         {
 
-            using(var context = new Contexto())
+            try
             {
-                var pedidoModelo = context.Pedidos
-                    .Where(x => x.Id == newProductToOrder.PedidoId)
-                    .Single();
-
-                var produtoModelo = context.Produtos
-                    .Where(x => x.Id == newProductToOrder.ProdutoId)
-                    .Single();
-
-                var ProdutoPedidoModelo = new Models.ProdutoPedido()
+                using (var context = new Contexto())
                 {
-                    Produto = produtoModelo,
-                    Pedido = pedidoModelo
-                };
+                    var pedidoModelo = context.Pedidos
+                        .Where(x => x.Id == newProductToOrder.PedidoId)
+                        .Single();
 
-                context.ProdutoPedidos.Add(ProdutoPedidoModelo);
-                context.SaveChanges();
+                    var produtoModelo = context.Produtos
+                        .Where(x => x.Id == newProductToOrder.ProdutoId)
+                        .Single();
+
+                    var ProdutoPedidoModelo = new Models.ProdutoPedido()
+                    {
+                        Produto = produtoModelo,
+                        Pedido = pedidoModelo
+                    };
+
+                    context.ProdutoPedidos.Add(ProdutoPedidoModelo);
+                    context.SaveChanges();
+                    var message = string.Format("Sucesso");
+                    return Request.CreateErrorResponse(HttpStatusCode.OK, message);
+                }
             }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var errors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in errors.ValidationErrors)
+                    {
+
+                        var message = validationError.ErrorMessage;
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
+                    }
+                }
+            }
+
+            var error = string.Format("Alguma coisa deu errado, tente novamente!");
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
         }
     }
 }

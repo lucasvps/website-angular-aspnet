@@ -88,7 +88,7 @@ namespace AspNetWebApi.Controllers
         {
 
             public long IdClient { get; set; }
-            public long Number { get; set; }
+            
             public double Cost { get; set; }
 
             public double Discount { get; set; }
@@ -96,29 +96,53 @@ namespace AspNetWebApi.Controllers
         }
 
         [HttpPost]
-        public long Post(NewOrder newOrder)
+        public IHttpActionResult Post(NewOrder newOrder)
         {
-            using (var context = new Contexto())
+            try
             {
-                var clientModel = context.Clientes.Where(x => x.Id == newOrder.IdClient).Single();
 
-                var orderModel = new Models.Pedido()
+                if(newOrder.Discount > newOrder.Cost)
                 {
-                    Number = (context.Pedidos.Count() + 1000),
-                    Cost = newOrder.Cost,
-                    Cliente = clientModel,
-                    Discount = newOrder.Discount,
-                    FinalCost = (newOrder.Cost > newOrder.Discount) ? (newOrder.Cost - newOrder.Discount) : newOrder.Cost,
-                    Date = DateTime.Now.ToString(),
-                };
+                    return BadRequest("O desconto não pode ser maior que o valor final!");
+                }
 
-                context.Pedidos.Add(orderModel);
-                context.SaveChanges();
+                using (var context = new Contexto())
+                {
+                    var clientModel = context.Clientes.Where(x => x.Id == newOrder.IdClient).Single();
 
-                return orderModel.Id;
+                    var orderModel = new Models.Pedido()
+                    {
+                        Number = (context.Pedidos.Count() + 1000),
+                        Cost = newOrder.Cost,
+                        Cliente = clientModel,
+                        Discount = newOrder.Discount,
+                        FinalCost = (newOrder.Cost > newOrder.Discount) ? (newOrder.Cost - newOrder.Discount) : newOrder.Cost,
+                        Date = DateTime.Now,
+                    };
+
+                    context.Pedidos.Add(orderModel);
+                    context.SaveChanges();
+
+                    return Ok(orderModel.Id);
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var errors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in errors.ValidationErrors)
+                    {
+
+                        var message = validationError.ErrorMessage;
+                        return BadRequest(message);
+                    }
+                }
             }
 
-            
+            var error = string.Format("Alguma coisa deu errado, tente novamente!");
+            return BadRequest(error);
+
+
         }
     }
 }

@@ -2,7 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\BackEnd",
-    "\\BackEnd\\AspNetWebApi"
+    "\\BackEnd\\AspNetWebApi",
+    "\\BackEnd\\AspNetWebApi\\AspNetWebApi",
+    "\\BackEnd\\AspNetWebApi\\AspNetWebApi\\Controllers",
+    "\\BackEnd\\AspNetWebApi\\AspNetWebApi\\Models"
   ],
+  "SelectedNode": "\\BackEnd\\AspNetWebApi\\AspNetWebApi\\Controllers\\ProductsController.cs",
   "PreviewInSolutionExplorer": false
 }

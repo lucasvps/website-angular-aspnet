@@ -8,6 +8,9 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Services.Description;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace AspNetWebApi.Controllers
 {
@@ -80,20 +83,69 @@ namespace AspNetWebApi.Controllers
         }
 
         [HttpPost]
-        public void Post(NewClient newClient)
+        public HttpResponseMessage Post(NewClient newClient)
         {
-        
-            using (var context = new Contexto())
-            {
-                var clientModel = new Models.Cliente()
-                {
-                    Name = newClient.Name,
-                    Email = newClient.Email,
-                };
 
-                context.Clientes.Add(clientModel);
-                context.SaveChanges();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    using (var context = new Contexto())
+                    {
+
+                        var isEmailAlreadyExists = context.Clientes.Any(x => x.Email == newClient.Email);
+                        if (isEmailAlreadyExists)
+                        {
+                            var message = string.Format("Este email já esta sendo utilizado");
+                            return Request.CreateErrorResponse(HttpStatusCode.Conflict, message);
+                        }
+
+                        else
+                        {
+
+                            Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+                            Match match = regex.Match(newClient.Email);
+                            if (!match.Success)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Email inválido!");
+                            }
+
+
+                            var clientModel = new Models.Cliente()
+                            {
+                                Name = newClient.Name,
+                                Email = newClient.Email,
+                            };
+
+                            context.Clientes.Add(clientModel);
+                            context.SaveChanges();
+                            var message = string.Format("Sucess");
+                            return Request.CreateErrorResponse(HttpStatusCode.OK, message);
+                        }
+
+
+
+                    }
+                }
             }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var errors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in errors.ValidationErrors)
+                    {
+                       
+                        var message = validationError.ErrorMessage;
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
+                    }
+                }
+            }
+
+            var error = string.Format("Alguma coisa deu errado, tente novamente!");
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
+
+
         }
 
         public class Pedido
@@ -103,7 +155,7 @@ namespace AspNetWebApi.Controllers
             public long Number { get; set; }
             public double FinalCost { get; set; }
 
-            public string Date { get; set; }
+            public DateTime Date { get; set; }
 
 
         }
@@ -124,6 +176,7 @@ namespace AspNetWebApi.Controllers
                     {
                         Number = pedidoModel.Number,
                         FinalCost = pedidoModel.FinalCost,
+                        
                         Date = pedidoModel.Date,
                         Id = pedidoModel.Id
                     };

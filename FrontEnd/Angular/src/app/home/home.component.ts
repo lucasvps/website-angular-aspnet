@@ -9,10 +9,10 @@ class Contato {
 
 @Component({
 	selector: 'app-contatos',
-	templateUrl: './contatos.component.html',
-	styleUrls: ['./contatos.component.css']
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.css']
 })
-export class ContatosComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
 	contatos: Contato[] = [];
 

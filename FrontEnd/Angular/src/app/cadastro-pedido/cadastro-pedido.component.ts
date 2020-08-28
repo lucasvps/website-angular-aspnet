@@ -24,7 +24,7 @@ class ProdutoPedido {
 })
 export class CadastroPedidoComponent implements OnInit {
 
-  rateControl: FormGroup;
+  controleDesconto: FormGroup;
 
   produtos: Array<ProdutoModel> = new Array();
 
@@ -43,6 +43,12 @@ export class CadastroPedidoComponent implements OnInit {
   pedidoId: number;
 
   error: string;
+
+  public noWhitespaceValidator(control: FormGroup) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private produtoService: ProdutoService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.IdClient = this.activatedRoute.snapshot.params['id'];
@@ -66,9 +72,6 @@ export class CadastroPedidoComponent implements OnInit {
       this.carrinho.push(produto);
       this.valorTotal += (produto.Value);
     }
-    console.log(this.valorTotal);
-    console.log(this.carrinho);
-    console.log(this.carrinhoIds);
   }
 
   finalizarPedido() {
@@ -84,7 +87,6 @@ export class CadastroPedidoComponent implements OnInit {
           var prod = new ProdutoPedido();
           prod.PedidoId = this.pedidoId;
           prod.ProdutoId = produto.Id;
-          console.log(prod);
           this.http.post("http://localhost:49493/api/produtopedido", prod).subscribe((result: ProdutoPedido) => {
             this.router.navigate(['cliente/' + this.IdClient + "/pedidos"]);
           });
@@ -97,7 +99,12 @@ export class CadastroPedidoComponent implements OnInit {
   aplicarDesconto(desconto: number) {
     if (desconto > this.valorTotal) {
       this.error = "Desconto não pode ser maior que o valor total!"
-      console.log('Maior que valor total');
+      this.Desconto = 0;
+    } else if (desconto < 0) {
+      this.error = "Desconto não pode ser um valor negativo!"
+      this.Desconto = 0;
+    } else if (desconto == null) {
+      this.error = "Valor inválido!"
       this.Desconto = 0;
     } else {
       this.error = "";
@@ -111,9 +118,6 @@ export class CadastroPedidoComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.rateControl = this.formBuilder.group({
-    // 	desconto: ['', Validators.max(this.valorTotal)]
-    // });
     this.http.get<ClientModel>('http://localhost:49493/api/clients/' + this.IdClient)
       .subscribe(x => this.cliente = x);
 

@@ -7,20 +7,15 @@
 <mat-card style="margin:32px;">
 	<form [formGroup]="form" (ngSubmit)="cadastrar()">
 
-		<mat-form-field class="full-width">
-			<input type="text" formControlName="nome" required name='nome'  matInput placeholder="Nome" >
-			<mat-error *ngIf="form.controls.nome.hasError('required')">
-				O Nome é <strong>obrigatório</strong>
-			 </mat-error>
-			 
-      
-    </mat-form-field>
     
     <mat-form-field class="full-width">
 			<input type="text" formControlName="descricao" required name='descricao' matInput placeholder="Descrição" >
 			<mat-error *ngIf="form.controls.descricao.hasError('required')">
 				A descrição é <strong>obrigatória</strong>
-			  </mat-error>
+			</mat-error>
+			<mat-error *ngIf="form.controls.descricao.hasError('minlength')">
+				A descrição precisa ter 10 ou mais caracteres!
+			</mat-error>
       
     </mat-form-field>
     
@@ -29,9 +24,20 @@
 			<mat-error *ngIf="form.controls.valor.hasError('required')">
 				O valor é <strong>obrigatório</strong>
 			 </mat-error>
+			 <mat-error *ngIf="form.controls.valor.hasError('min')">
+				O valor não pode ser negativo!
+			</mat-error>
 			 
       
-    </mat-form-field>
+	</mat-form-field>
+	
+	<label class="image-upload-container btn btn-bwm">
+		<span>Select Image <br/></span>
+		<input formControlName="imageInput" name="imageInput"
+			   type="file"
+			   accept="image/*"
+			   (change)="processFile($event)">
+	  </label>
 
 		<br />
 		<br />

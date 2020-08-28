@@ -8,10 +8,16 @@
 	<form [formGroup]="form" (ngSubmit)="cadastrar()">
 
 		<mat-form-field class="full-width">
-			<input type="text" formControlName="nome" required name='nome'  matInput placeholder="Nome" >
+			<input min="3" type="text" formControlName="nome" required name='nome'  matInput placeholder="Nome" >
 			<mat-error *ngIf="form.controls.nome.hasError('required')">
 				O Nome é <strong>obrigatório</strong>
-			 </mat-error>
+			</mat-error>
+			<mat-error *ngIf="form.controls.nome.hasError('minlength')">
+				O Nome precisa ter 3 ou mais caracteres!
+			</mat-error>
+			<mat-error *ngIf="form.controls.nome.hasError('maxlength')">
+				O nome não pode ter mais de 30 caracteres!
+			</mat-error>
 			 
       
     </mat-form-field>

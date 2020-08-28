@@ -20,6 +20,8 @@ export class ProdutoService {
   }
 
   novoProduto(produto: ProdutoModel) : Observable<any> {
+    //const fd = new FormData();
+    //fd.append('imageFile', produto.ImageFile, produto.ImageFile.name)
     return this.http.post("http://localhost:49493/api/products/", produto);
   }
 }

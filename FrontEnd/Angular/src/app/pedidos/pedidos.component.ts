@@ -30,11 +30,12 @@ export class PedidosComponent implements OnInit {
   }
 
   novoPedido(){
-    this.router.navigate(['pedido/novo/' + this.IdClient]);
+    this.router.navigate(['clientes/' + this.IdClient + '/pedido/cadastro']);
   }
 
   produtoPedido(pedidoId:number, serial:number){
-    this.router.navigate(['pedido/produtos/' + pedidoId + "/" + serial]);
+    this.router.navigate(['pedido/' + pedidoId + '/produtos']);
+    
   }
 
 }

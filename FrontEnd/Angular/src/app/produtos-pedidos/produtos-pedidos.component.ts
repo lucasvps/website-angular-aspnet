@@ -18,7 +18,6 @@ export class ProdutosPedidosComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.pedidoId = this.activatedRoute.snapshot.params['id'];
-    this.serialNumber = this.activatedRoute.snapshot.params['serial'];
    }
 
   listarProdutosPedido() {
