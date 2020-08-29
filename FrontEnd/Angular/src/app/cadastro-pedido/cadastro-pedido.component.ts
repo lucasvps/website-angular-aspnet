@@ -24,7 +24,7 @@ class ProdutoPedido {
 })
 export class CadastroPedidoComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'value', 'checkbox'];
+  colunas: string[] = ['descricao', 'valor', 'checkbox'];
 
   controleDesconto: FormGroup;
 
@@ -36,13 +36,13 @@ export class CadastroPedidoComponent implements OnInit {
 
   cliente: ClientModel = new ClientModel();
 
-  IdClient: number;
+  IdCliente: number;
 
   Desconto: number = 0;
 
   pedidoId: number;
 
-  error: string;
+  erro: string;
 
   public noWhitespaceValidator(control: FormGroup) {
     const isWhitespace = (control.value || '').trim().length === 0;
@@ -51,7 +51,7 @@ export class CadastroPedidoComponent implements OnInit {
   }
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private produtoService: ProdutoService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.IdClient = this.activatedRoute.snapshot.params['id'];
+    this.IdCliente = this.activatedRoute.snapshot.params['id'];
   }
 
 
@@ -76,19 +76,19 @@ export class CadastroPedidoComponent implements OnInit {
     console.log(this.carrinhoIds.length);
     if (this.carrinhoIds.length > 0) {
       var pedido = new NovoPedido();
-      pedido.idClient = this.IdClient;
+      pedido.idClient = this.IdCliente;
       pedido.cost = this.valorTotal;
       pedido.discount = this.Desconto;
 
       var headers = new HttpHeaders().append("Content-Type", "application/json")
 
-      var params  = new HttpParams().set("client", (this.IdClient).toString()).set("discount", this.Desconto.toString());
+      var params  = new HttpParams().set("client", (this.IdCliente).toString()).set("discount", this.Desconto.toString());
 
       var produtos = JSON.stringify(this.carrinhoIds);
       console.log(produtos);
 
       this.http.post("http://localhost:49493/api/orders", produtos, {params, headers}).subscribe(result => {
-        this.router.navigate(['cliente/' + this.IdClient + "/pedidos"]);
+        this.router.navigate(['cliente/' + this.IdCliente + "/pedidos"]);
       });
     }
 
@@ -96,19 +96,19 @@ export class CadastroPedidoComponent implements OnInit {
 
   aplicarDesconto(desconto: number) {
     if (desconto > this.valorTotal) {
-      this.error = "Desconto não pode ser maior que o valor total!"
+      this.erro = "Desconto não pode ser maior que o valor total!"
       this.Desconto = 0;
     } else if (desconto < 0) {
-      this.error = "Desconto não pode ser um valor negativo!"
+      this.erro = "Desconto não pode ser um valor negativo!"
       this.Desconto = 0;
     } else if (desconto == null) {
-      this.error = "Valor inválido!"
+      this.erro = "Valor inválido!"
       this.Desconto = 0;
     } else {
-      this.error = "";
-      console.log(desconto);
+      this.erro = "";
       this.Desconto = desconto;
-      console.log(this.Desconto);
+      alert("Desconto de R$" + this.Desconto + " aplicado com sucesso!");
+     
     }
 
 
@@ -116,7 +116,7 @@ export class CadastroPedidoComponent implements OnInit {
 
 
   ngOnInit() {
-    this.http.get<ClientModel>('http://localhost:49493/api/clients/' + this.IdClient)
+    this.http.get<ClientModel>('http://localhost:49493/api/clients/' + this.IdCliente)
       .subscribe(x => this.cliente = x);
 
     this.listarProdutos()

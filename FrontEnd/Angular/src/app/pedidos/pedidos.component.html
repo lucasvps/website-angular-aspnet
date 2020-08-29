@@ -14,56 +14,27 @@
 	<br/>
 	<mat-table [dataSource]="pedidos" class="mat-elevation-z8">
 		<!-- Name Column -->
-		<ng-container matColumnDef="serialNumber">
+		<ng-container matColumnDef="numero">
 		  <mat-header-cell *matHeaderCellDef> Número de Serial </mat-header-cell>
 		  <mat-cell *matCellDef="let pedidos"> {{pedidos.Number}} </mat-cell>
 		</ng-container>
-		<ng-container matColumnDef="date">
+		<ng-container matColumnDef="data">
 		  <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
 		  <mat-cell *matCellDef="let pedidos"> {{pedidos.Date | date:'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="discount">
+      <ng-container matColumnDef="desconto">
          <mat-header-cell *matHeaderCellDef> Desconto aplicado</mat-header-cell>
          <mat-cell *matCellDef="let pedidos">R$ {{pedidos.Discount}} </mat-cell>
        </ng-container>
-      <ng-container matColumnDef="finalCost">
+      <ng-container matColumnDef="valorFinal">
          <mat-header-cell *matHeaderCellDef> Valor Final </mat-header-cell>
          <mat-cell *matCellDef="let pedidos">R$ {{pedidos.FinalCost}} </mat-cell>
        </ng-container>
-		<ng-container matColumnDef="products">
+		<ng-container matColumnDef="produtos">
 			<mat-header-cell *matHeaderCellDef>Produtos</mat-header-cell>
 			<mat-cell *matCellDef="let pedidos"><button  mat-raised-button color="primary"  (click)="produtoPedido(pedidos.Id, pedidos.Number)" >Ver Produtos</button></mat-cell>
 		</ng-container>
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		<mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: colunas;"></mat-row>
 	</mat-table>
   </div>
-
-<!-- <div style="margin:32px;">
-
-	<button mat-raised-button color="primary" (click)="novoPedido()" style="margin-left:16px;">Novo Pedido</button>
-
-  <br />
-  <br />
-
-  <h3>Quantidade de pedidos : {{pedidos.length}}</h3>
-
-  <table border="2px solid transparent" border-collapse="collapse">
-		<tr>
-      <th>Serial Number</th>
-      <th>Data</th>
-      <th>Valor Final</th>
-      <th>Produtos</th>
-      </tr>
-      
-		
-		<tr *ngFor="let pedido of pedidos">
-      <td padding:15px >{{pedido.Number}}</td>
-      <td padding="15px">{{pedido.Date | date:'dd/MM/yyyy'}}</td>
-      <td>R$ {{ pedido.FinalCost }}</td>
-      <td><button  mat-raised-button color="primary"  (click)="produtoPedido(pedido.Id, pedido.Number)" >Ver Produtos</button></td>
-      
-		</tr>
-		
-	</table>
-</div> -->

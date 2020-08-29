@@ -9,7 +9,6 @@ import { MaterialImports } from './MaterialImports';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { CadastroMensagemComponent } from './cadastro-mensagem/cadastro-mensagem.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { ClientsService } from '../clients.service';
@@ -41,7 +40,6 @@ const appRoutes: Routes = [
 @NgModule({
 	declarations: [
 		AppComponent,
-		CadastroMensagemComponent,
 		ClientsComponent,
 		CadastroClienteComponent,
 		PedidosComponent,

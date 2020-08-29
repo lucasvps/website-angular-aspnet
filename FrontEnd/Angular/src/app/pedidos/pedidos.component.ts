@@ -11,33 +11,37 @@ import { PedidoModel } from './pedido.model';
 })
 export class PedidosComponent implements OnInit {
 
-  displayedColumns: string[] = ['serialNumber', 'date','discount', 'finalCost','products', ];
+  colunas: string[] = ['numero', 'data','desconto', 'valorFinal','produtos', ];
 
   pedidos: Array<PedidoModel> = new Array();
 
   cliente: ClientModel = new ClientModel();
 
-  IdClient: number;
+  IdCliente: number;
 
   constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.IdClient = this.activatedRoute.snapshot.params['id'];
+    this.IdCliente = this.activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
-    this.http.get<ClientModel>('http://localhost:49493/api/clients/' + this.IdClient)
+    this.http.get<ClientModel>('http://localhost:49493/api/clients/' + this.IdCliente)
       .subscribe(x => this.cliente = x);
 
-    this.http.get<PedidoModel[]>('http://localhost:49493/api/clients/' + this.IdClient + '/orders')
+    this.http.get<PedidoModel[]>('http://localhost:49493/api/clients/' + this.IdCliente + '/orders')
       .subscribe(x => this.pedidos = x);
   }
 
   novoPedido(){
-    this.router.navigate(['clientes/' + this.IdClient + '/pedido/cadastro']);
+    this.router.navigate(['clientes/' + this.IdCliente + '/pedido/cadastro']);
   }
 
   produtoPedido(pedidoId:number, serial:number){
     this.router.navigate(['pedido/' + pedidoId + '/produtos']);
     
+  }
+
+  home(){
+    this.router.navigate(['/home']);
   }
 
 }

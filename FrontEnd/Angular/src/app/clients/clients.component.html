@@ -12,50 +12,20 @@
 	<br/>
 	<br/>
 	<br/>
-	<mat-table [dataSource]="clients" class="mat-elevation-z8">
-		<!-- Name Column -->
-		<ng-container matColumnDef="name">
+	<mat-table [dataSource]="clientes" class="mat-elevation-z8">
+		<ng-container matColumnDef="nome">
 		  <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-		  <mat-cell *matCellDef="let client"> {{client.Name}} </mat-cell>
+		  <mat-cell *matCellDef="let cliente"> {{cliente.Name}} </mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="email">
 		  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-		  <mat-cell *matCellDef="let client"> {{client.Email}} </mat-cell>
+		  <mat-cell *matCellDef="let cliente"> {{cliente.Email}} </mat-cell>
 		</ng-container>
-		<ng-container matColumnDef="orders">
+		<ng-container matColumnDef="pedidos">
 			<mat-header-cell *matHeaderCellDef> Pedidos </mat-header-cell>
-			<mat-cell *matCellDef="let client"><button  mat-raised-button color="primary"  (click)="pedidos(client)">Ver Pedidos</button></mat-cell>
+			<mat-cell *matCellDef="let cliente"><button  mat-raised-button color="primary"  (click)="pedidos(cliente)">Ver Pedidos</button></mat-cell>
 		</ng-container>
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		<mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: colunas;"></mat-row>
 	</mat-table>
   </div>
-
-<!-- <div style="margin:32px;">
-
-	<button mat-raised-button color="primary" (click)="novo()">Cadastrar Cliente</button>
-
-	<br />
-	<br />
-	<br />
-
-	
-
-
-	<table border="2px solid transparent" border-collapse="collapse">
-		<tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Pedidos</th>
-		</tr>
-		
-		<tr *ngFor="let client of clients">
-      <td padding:15px >{{client.Name}}</td>
-      <td padding="15px">{{client.Email}}</td>
-      <td><button  mat-raised-button color="primary"  (click)="pedidos(client)">Ver Pedidos</button></td>
-      
-		</tr>
-		
-	</table>
-
-</div> -->

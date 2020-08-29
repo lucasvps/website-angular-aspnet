@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProdutosPedidosComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'value'];
+  colunas: string[] = ['descricao', 'valor'];
 
   produtos: Array<ProdutoModel> = new Array();
 

@@ -13,11 +13,11 @@ import { ClientsService } from '../../clients.service';
 })
 export class CadastroClienteComponent implements OnInit {
 
-	client: ClientModel = new ClientModel();
+	cliente: ClientModel = new ClientModel();
 
 	form: FormGroup;
 
-	error: string;
+	erro: string;
 
 	httpOptions = {
 		headers: new HttpHeaders({
@@ -48,14 +48,14 @@ export class CadastroClienteComponent implements OnInit {
 			return;
 		}
 
-		this.client.Name = this.form.get('nome').value;
-		this.client.Email = this.form.get('email').value;
+		this.cliente.Name = this.form.get('nome').value;
+		this.cliente.Email = this.form.get('email').value;
 
 		//console.log(this.client);
-		this.clientService.cadastrarCliente(this.client).subscribe(result => {
+		this.clientService.cadastrarCliente(this.cliente).subscribe(res => {
 			this.router.navigate(['clientes']);
 		}, err => {
-			this.error = err.error.Message;
+			this.erro = err.erro.Message;
 			
 		})
 	}

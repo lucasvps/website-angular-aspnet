@@ -10,7 +10,7 @@ import { ProdutoService } from '../../produto.service';
 })
 export class ProdutosComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'value', 'image'];
+  colunas: string[] = ['descricao', 'valor', 'imagem'];
 
   produto: ProdutoModel = new ProdutoModel();
 
@@ -33,7 +33,6 @@ export class ProdutosComponent implements OnInit {
   }
 
   home(){
-    console.log('oi');
 		this.router.navigate(['/home']);
 	}
   

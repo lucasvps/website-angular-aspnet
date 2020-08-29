@@ -14,11 +14,11 @@ import { ClientModel } from './client.model';
 })
 export class ClientsComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'email', 'orders'];
+  colunas: string[] = ['nome', 'email', 'pedidos'];
 
-  client: ClientModel = new ClientModel();
+  cliente: ClientModel = new ClientModel();
 
-  clients: Array<ClientModel> = new Array();
+  clientes: Array<ClientModel> = new Array();
 
   httpOptions = {
 		headers: new HttpHeaders({
@@ -30,7 +30,7 @@ export class ClientsComponent implements OnInit {
 
   listarClientes(){
     this.clientsService.listarClientes().subscribe(clients => {
-      this.clients = clients;
+      this.clientes = clients;
     });
   }
 
@@ -42,8 +42,8 @@ export class ClientsComponent implements OnInit {
 		this.router.navigate(['clientes/cadastro']);
   }
   
-  pedidos(client: ClientModel) {
-		this.router.navigate(['cliente/' + client.Id + '/pedidos']);
+  pedidos(cliente: ClientModel) {
+		this.router.navigate(['cliente/' + cliente.Id + '/pedidos']);
   }
 
   home(){

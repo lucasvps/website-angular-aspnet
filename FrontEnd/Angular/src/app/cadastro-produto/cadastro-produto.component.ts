@@ -26,7 +26,6 @@ export class CadastroProdutoComponent implements OnInit {
 
 	constructor(private formBuilder: FormBuilder, private produtoService: ProdutoService, private http: HttpClient, private router: Router) {
 		this.form = this.formBuilder.group({
-			//nome: ['', [Validators.minLength(3), Validators.maxLength(30), this.noWhitespaceValidator]],
 			descricao: ['', [Validators.minLength(10), Validators.maxLength(45), this.noWhitespaceValidator]],
 			valor: ['', [Validators.required, Validators.min(1)]],
 			imageInput: []

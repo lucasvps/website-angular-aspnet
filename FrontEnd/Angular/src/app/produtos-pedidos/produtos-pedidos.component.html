@@ -11,36 +11,15 @@
 	
 	<mat-table [dataSource]="produtos" class="mat-elevation-z8">
 		<!-- Name Column -->
-		<ng-container matColumnDef="description">
+		<ng-container matColumnDef="descricao">
 		  <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
 		  <mat-cell *matCellDef="let produtos"> {{produtos.Description}} </mat-cell>
 		</ng-container>
-		<ng-container matColumnDef="value">
+		<ng-container matColumnDef="valor">
 		  <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
 		  <mat-cell *matCellDef="let produtos">R$ {{produtos.Value}} </mat-cell>
 		</ng-container>
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		<mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: colunas;"></mat-row>
 	</mat-table>
 </div>
-
-<!-- <div style="margin:32px;">
-
-
-	<table>
-		<tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-      <th>Valor</th>
-		</tr>
-		
-		<tr *ngFor="let produto of produtos">
-      <td>{{produto.Name}}</td>
-      <td>{{produto.Description}}</td>
-      <td>R$ {{produto.Value}}</td>
-      
-		</tr>
-		
-	</table>
-
-</div> -->

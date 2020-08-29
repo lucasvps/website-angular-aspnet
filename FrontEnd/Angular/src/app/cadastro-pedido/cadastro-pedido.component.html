@@ -10,18 +10,22 @@
 
 <div style="margin:32px;" class="container" id= "tableContainer">
 
-	<h2>Valor do pedido : R$ {{valorTotal}}</h2>
-  <h2>Desconto aplicado : R$ {{Desconto}}</h2>
-  <h2>Valor Final : R$ {{valorTotal - Desconto}}</h2>
+	<mat-card>
+		<mat-card-content style="color: blue;">
+			<h2>Valor do pedido : R$ {{valorTotal}}</h2>
+  			<h2>Desconto aplicado : R$ {{Desconto}}</h2>
+  			<h2>Valor Final : R$ {{valorTotal - Desconto}}</h2>
+		</mat-card-content>
+	</mat-card>
 
 	<br/>
 	<mat-table [dataSource]="produtos" class="mat-elevation-z8">
 		<!-- Name Column -->
-		<ng-container matColumnDef="description">
+		<ng-container matColumnDef="descricao">
 		  <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
 		  <mat-cell *matCellDef="let produtos"> {{produtos.Description}} </mat-cell>
 		</ng-container>
-		<ng-container matColumnDef="value">
+		<ng-container matColumnDef="valor">
 		  <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
 		  <mat-cell *matCellDef="let produtos">R$ {{produtos.Value}} </mat-cell>
 		</ng-container>
@@ -29,8 +33,8 @@
 			<mat-header-cell *matHeaderCellDef></mat-header-cell>
 			<mat-cell *matCellDef="let produtos"><input (click)="getProduto(this.produtos)" type="checkbox" value={{produtos.Id}}></mat-cell>
 		</ng-container>
-		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		<mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: colunas;"></mat-row>
   </mat-table>
 
   
@@ -38,7 +42,7 @@
   <br/>
   
   <form>
-    <h3 style="color: red;" >{{error}}</h3>
+    <h3 style="color: red;" >{{erro}}</h3>
     <mat-form-field class="full-width">
       <input name="desconto" [(ngModel)]="desconto" type="number" matInput placeholder="Desconto">
     </mat-form-field>
@@ -54,52 +58,3 @@
     <button style="display: block; margin: auto;" mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
   </form>
 </div>
-
-<!-- <div style="margin:32px;">
-
-  
-  <h2>Valor do pedido : R$ {{valorTotal}}</h2>
-  <h2>Desconto aplicado : R$ {{Desconto}}</h2>
-  <h2>Valor Final : R$ {{valorTotal - Desconto}}</h2>
-
-
-
-	<table>
-		<tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-      <th>Valor</th>
-      <th></th>
-
-		</tr>
-		
-		<tr *ngFor="let produto of produtos">
-      <td>{{produto.Name}}</td>
-      <td>{{produto.Description}}</td>
-      <td>R$ {{produto.Value}}</td>
-      <td><input (click)="getProduto(this.produto)" type="checkbox" value={{produto.Id}}></td>
-      
-		</tr>
-		
-  </table>
-  <br/>
-  <br/>
-
-  <form>
-    <h3 style="color: red;" >{{error}}</h3>
-    <mat-form-field class="full-width">
-      <input name="desconto" [(ngModel)]="desconto" type="number" matInput placeholder="Desconto">
-    </mat-form-field>
-    
-  
-    <br/>
-    <br/>
-  
-    <button mat-raised-button color="primary" (click)="aplicarDesconto(desconto)">Aplicar Desconto</button>
-  </form>
-  <br/>
-  <br/>
-
-  <button mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
-
-</div> -->
