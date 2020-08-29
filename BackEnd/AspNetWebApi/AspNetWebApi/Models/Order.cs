@@ -36,6 +36,8 @@ namespace AspNetWebApi.Models
         [Required]
         public DateTime Date { get; set; }
 
+        public Order() { }
+
         public Order(long Id,double Discount, double Cost, double FinalCost, long Number, List<Product> products, Client Client, DateTime Date)
         {
             this.Id = Id;
@@ -54,10 +56,6 @@ namespace AspNetWebApi.Models
                 this.Products.Add(product);
 
             }
-
-
         }
-
-        public Order() { }
     }
 }

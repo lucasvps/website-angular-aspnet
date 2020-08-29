@@ -27,6 +27,7 @@ namespace AspNetWebApi.Models
         [Range(1, Double.PositiveInfinity)]
         public double Value { get; set; }
 
+        public Product(){}
 
         public Product(string Description, double Value, string Image)
         {
@@ -35,13 +36,5 @@ namespace AspNetWebApi.Models
             this.Value = Value;
             this.Image = Image;
         }
-
-        public Product()
-        {
-
-        }
-
-
-
     }
 }

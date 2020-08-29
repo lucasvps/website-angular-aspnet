@@ -22,6 +22,7 @@ namespace AspNetWebApi.Models
 
         public List<Order> Orders { get; set; }
 
+        public Client(){}
 
         public Client(long Id, string name, string email)
         {
@@ -30,9 +31,7 @@ namespace AspNetWebApi.Models
             this.Name = name;
         }
 
-        public Client()
-        {
-        }
+        
 
 
     }

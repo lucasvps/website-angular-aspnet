@@ -23,9 +23,15 @@ namespace AspNetWebApi.Controllers
             using(var context = new Contexto())
             {
                 
-                if(!float.IsNaN(client) && !double.IsNaN(discount) && products.Length > 0 && discount >=0)
+                if(!float.IsNaN(client) && !double.IsNaN(discount) && products.Length > 0)
                 {
                     {
+
+                        if(discount < 0)
+                        {
+                            var error = string.Format("O desconto não pode ter um valor negativo!");
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
+                        }
 
                         Order orderModel = new Order();
                         orderModel.Products = new List<Product>();
@@ -41,7 +47,7 @@ namespace AspNetWebApi.Controllers
 
                         if (discount > calculateCost)
                         {
-                            var error = string.Format("Alguma coisa deu errado, tente novamente!");
+                            var error = string.Format("O desconto não pode ser maior que o valor do pedido!");
                             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
 
                         }

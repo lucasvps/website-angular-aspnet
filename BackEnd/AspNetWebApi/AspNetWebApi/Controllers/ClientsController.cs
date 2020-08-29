@@ -103,6 +103,11 @@ namespace AspNetWebApi.Controllers
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Email inválido!");
                             }
 
+                            if(newClient.Name.Length < 3 || newClient.Name.Trim() == "")
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Nome inválido!");
+                            }
+
 
                             var clientModel = new Models.Client()
                             {

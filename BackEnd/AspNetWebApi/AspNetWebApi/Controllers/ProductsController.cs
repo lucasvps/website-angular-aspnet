@@ -84,6 +84,18 @@ namespace AspNetWebApi.Controllers
             try
             {
 
+                if(newProduct.Value <= 0)
+                {
+                    var err = string.Format("O valor do produto precisa ser maior do que zero!");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
+                }
+
+                if(newProduct.Description.Length < 8 || newProduct.Description.Trim() == "")
+                {
+                    var err2 = string.Format("Esta nao é uma descrição válida!");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err2);
+                }
+
                 using (var context = new Contexto())
                 {
 
