@@ -55,12 +55,13 @@ export class CadastroClienteComponent implements OnInit {
 		this.clientService.cadastrarCliente(this.cliente).subscribe(res => {
 			this.router.navigate(['clientes']);
 		}, err => {
-			this.erro = err.erro.Message;
+			console.log(err);
+			this.erro = err.error.Message;
 			
 		})
 	}
 
 	home(){
-		this.router.navigate(['home']);
+		this.router.navigate(['clientes']);
 	  }
 }

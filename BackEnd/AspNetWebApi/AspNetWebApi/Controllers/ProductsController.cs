@@ -90,7 +90,7 @@ namespace AspNetWebApi.Controllers
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err);
                 }
 
-                if(newProduct.Description.Length < 8 || newProduct.Description.Trim() == "")
+                if(newProduct.Description.Length < 8 || newProduct.Description.Trim() == "" || newProduct.Description.Trim().Length < 8)
                 {
                     var err2 = string.Format("Esta nao é uma descrição válida!");
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, err2);

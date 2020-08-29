@@ -34,7 +34,7 @@ const appRoutes: Routes = [
 	{ path: 'produtos/cadastro', component: CadastroProdutoComponent },
 	{path : 'clientes/:id/pedido/cadastro', component: CadastroPedidoComponent},
 	{ path: 'pedido/:id/produtos', component: ProdutosPedidosComponent },
-	{ path: '', redirectTo: '/home', pathMatch: 'full' }
+	{ path: '', redirectTo: '/clientes', pathMatch: 'full' }
 ];
 
 @NgModule({

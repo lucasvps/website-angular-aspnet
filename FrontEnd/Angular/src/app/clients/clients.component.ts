@@ -48,6 +48,10 @@ export class ClientsComponent implements OnInit {
 
   home(){
 		this.router.navigate(['home']);
+  }
+  
+  produtos() {
+		this.router.navigate(['produtos']);
 	}
   
   

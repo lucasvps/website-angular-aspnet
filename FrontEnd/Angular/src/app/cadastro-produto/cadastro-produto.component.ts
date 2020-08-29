@@ -18,6 +18,8 @@ export class CadastroProdutoComponent implements OnInit {
 
 	imagemProduto: File = null;
 
+	erro: string;
+
 	public noWhitespaceValidator(control: FormGroup) {
 		const isWhitespace = (control.value || '').trim().length === 0;
 		const isValid = !isWhitespace;
@@ -57,13 +59,13 @@ export class CadastroProdutoComponent implements OnInit {
 			this.router.navigate(['produtos']);
 			console.log(produto);
 		}, err => {
-			console.log(err.name);
-			console.log('Erro ao cadastrar produto', err);
+			this.erro = err.error.Message;
+			
 		})
 	}
 
 	home(){
-		this.router.navigate(['home']);
+		this.router.navigate(['clientes']);
 	}
 
 }
