@@ -8,14 +8,17 @@ using System.Web;
 namespace AspNetWebApi.Models
 {
     [Table("Produto")]
-    public class Produto : BaseModelo
+    public class Product : BaseModelo
     {
-        
-        public string ImagePath { get; set; }
 
-        //public HttpPostedFileBase ImageFile { get; set; }
+        
+        
+        public string Image { get; set; }
 
         public string Name { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
+
 
         [Required]
         public string Description { get; set; }
@@ -24,7 +27,20 @@ namespace AspNetWebApi.Models
         [Range(1, Double.PositiveInfinity)]
         public double Value { get; set; }
 
-        public List<ProdutoPedido> ProdutoPedidos { get; set; }
+
+        public Product(string Description, double Value, string Image)
+        {
+           
+            this.Description = Description;
+            this.Value = Value;
+            this.Image = Image;
+        }
+
+        public Product()
+        {
+
+        }
+
 
 
     }

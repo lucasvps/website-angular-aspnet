@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoModel } from '../produtos/produto.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProdutoService } from '../produto.service';
+import { ProdutoService } from '../../produto.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -62,6 +62,10 @@ export class CadastroProdutoComponent implements OnInit {
 			console.log(err.name);
 			console.log('Erro ao cadastrar produto', err);
 		})
+	}
+
+	home(){
+		this.router.navigate(['home']);
 	}
 
 }

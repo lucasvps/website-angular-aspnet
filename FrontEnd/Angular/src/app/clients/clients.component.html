@@ -1,16 +1,45 @@
 <mat-toolbar color="primary">
 	<mat-toolbar-row>
 		<span>Clientes</span>
+		<button mat-raised-button (click)="home()" style="margin: auto; display: block;"> Home </button>
+
 	</mat-toolbar-row>
 </mat-toolbar>
 
-<div style="margin:32px;">
+<div style="margin:32px;" class="container" id= "tableContainer">
+
+	<button mat-raised-button color="primary" (click)="novo()">Cadastrar Cliente</button>
+	<br/>
+	<br/>
+	<br/>
+	<mat-table [dataSource]="clients" class="mat-elevation-z8">
+		<!-- Name Column -->
+		<ng-container matColumnDef="name">
+		  <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+		  <mat-cell *matCellDef="let client"> {{client.Name}} </mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="email">
+		  <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+		  <mat-cell *matCellDef="let client"> {{client.Email}} </mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="orders">
+			<mat-header-cell *matHeaderCellDef> Pedidos </mat-header-cell>
+			<mat-cell *matCellDef="let client"><button  mat-raised-button color="primary"  (click)="pedidos(client)">Ver Pedidos</button></mat-cell>
+		</ng-container>
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+  </div>
+
+<!-- <div style="margin:32px;">
 
 	<button mat-raised-button color="primary" (click)="novo()">Cadastrar Cliente</button>
 
 	<br />
 	<br />
 	<br />
+
+	
 
 
 	<table border="2px solid transparent" border-collapse="collapse">
@@ -23,10 +52,10 @@
 		<tr *ngFor="let client of clients">
       <td padding:15px >{{client.Name}}</td>
       <td padding="15px">{{client.Email}}</td>
-      <td><button (click)="pedidos(client)">Ver Pedidos</button></td>
+      <td><button  mat-raised-button color="primary"  (click)="pedidos(client)">Ver Pedidos</button></td>
       
 		</tr>
 		
 	</table>
 
-</div>
+</div> -->

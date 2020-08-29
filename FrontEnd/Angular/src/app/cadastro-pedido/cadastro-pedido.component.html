@@ -1,10 +1,61 @@
 <mat-toolbar color="primary">
 	<mat-toolbar-row>
-		<span>Novo Pedido para {{cliente.Name}}</span>
+    <span>Novo Pedido para {{cliente.Name}}</span>
+		<button mat-raised-button (click)="home()" style="margin: auto; display: block;"> Home </button>
+    
 	</mat-toolbar-row>
 </mat-toolbar>
 
-<div style="margin:32px;">
+
+
+<div style="margin:32px;" class="container" id= "tableContainer">
+
+	<h2>Valor do pedido : R$ {{valorTotal}}</h2>
+  <h2>Desconto aplicado : R$ {{Desconto}}</h2>
+  <h2>Valor Final : R$ {{valorTotal - Desconto}}</h2>
+
+	<br/>
+	<mat-table [dataSource]="produtos" class="mat-elevation-z8">
+		<!-- Name Column -->
+		<ng-container matColumnDef="description">
+		  <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
+		  <mat-cell *matCellDef="let produtos"> {{produtos.Description}} </mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="value">
+		  <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+		  <mat-cell *matCellDef="let produtos">R$ {{produtos.Value}} </mat-cell>
+		</ng-container>
+		<ng-container matColumnDef="checkbox">
+			<mat-header-cell *matHeaderCellDef></mat-header-cell>
+			<mat-cell *matCellDef="let produtos"><input (click)="getProduto(this.produtos)" type="checkbox" value={{produtos.Id}}></mat-cell>
+		</ng-container>
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  
+  <br/>
+  <br/>
+  
+  <form>
+    <h3 style="color: red;" >{{error}}</h3>
+    <mat-form-field class="full-width">
+      <input name="desconto" [(ngModel)]="desconto" type="number" matInput placeholder="Desconto">
+    </mat-form-field>
+  
+    <br/>
+    <br/>
+  
+    <button class="center" mat-raised-button color="primary" (click)="aplicarDesconto(desconto)">Aplicar Desconto</button>
+    <br/>
+    <br/>
+    <br/>
+
+    <button style="display: block; margin: auto;" mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
+  </form>
+</div>
+
+<!-- <div style="margin:32px;">
 
   
   <h2>Valor do pedido : R$ {{valorTotal}}</h2>
@@ -51,4 +102,4 @@
 
   <button mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
 
-</div>
+</div> -->

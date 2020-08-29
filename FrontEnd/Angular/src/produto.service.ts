@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProdutoModel } from './produtos/produto.model';
+import { ProdutoModel } from './app/produtos/produto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ProdutoService {
   }
 
   listarProdutosPedido(pedidoId:number) : Observable<any>{
-    return this.http.get("http://localhost:49493/api/pedidos/" + pedidoId + "/produtos");
+    return this.http.get("http://localhost:49493/api/orders/" + pedidoId + "/products");
   }
 
   novoProduto(produto: ProdutoModel) : Observable<any> {

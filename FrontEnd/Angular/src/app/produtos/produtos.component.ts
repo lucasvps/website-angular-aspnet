@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoModel } from './produto.model';
 import { Router } from '@angular/router';
-import { ProdutoService } from '../produto.service';
+import { ProdutoService } from '../../produto.service';
 
 @Component({
   selector: 'app-produtos',
@@ -9,6 +9,8 @@ import { ProdutoService } from '../produto.service';
   styleUrls: ['./produtos.component.css']
 })
 export class ProdutosComponent implements OnInit {
+
+  displayedColumns: string[] = ['description', 'value', 'image'];
 
   produto: ProdutoModel = new ProdutoModel();
 
@@ -30,6 +32,10 @@ export class ProdutosComponent implements OnInit {
     this.router.navigate(['produtos/cadastro']);
   }
 
+  home(){
+    console.log('oi');
+		this.router.navigate(['/home']);
+	}
   
 
 }

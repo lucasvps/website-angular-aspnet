@@ -16,27 +16,19 @@ namespace AspNetWebApi.Controllers
 {
     public class ClientsController : ApiController
     {
-        public class Cliente
-        {
-            public long Id { get; set; }
-            public string Name { get; set; }
-            public string Email { get; set; }
-
-
-        }
 
         // Retorna todos os clientes
         [HttpGet]
-        public List<Cliente> Get()
+        public List<Client> Get()
         {
             using (var context = new Contexto())
             {
-                var clientsModel = context.Clientes.ToList();
-                var clientsList = new List<Cliente>();
+                var clientsModel = context.Clients.ToList();
+                var clientsList = new List<Client>();
 
                 foreach(var clientModel in clientsModel)
                 {
-                    var client = new Cliente()
+                    var client = new Client()
                     {
                         Id = clientModel.Id,
                         Name = clientModel.Name,
@@ -52,16 +44,16 @@ namespace AspNetWebApi.Controllers
 
         //Retorna cliente especifico
         [HttpGet]
-        public Cliente Get(long id)
+        public Client Get(long id)
         {
             using (var context = new Contexto())
             {
-                var clientModel = context.Clientes
+                var clientModel = context.Clients
                     .Where(x => x.Id == id)
                     .Single();
 
 
-                var client = new Cliente()
+                var client = new Client()
                 {
                     Id = clientModel.Id,
                     Name = clientModel.Name,
@@ -94,7 +86,7 @@ namespace AspNetWebApi.Controllers
                     using (var context = new Contexto())
                     {
 
-                        var isEmailAlreadyExists = context.Clientes.Any(x => x.Email == newClient.Email);
+                        var isEmailAlreadyExists = context.Clients.Any(x => x.Email == newClient.Email);
                         if (isEmailAlreadyExists)
                         {
                             var message = string.Format("Este email já esta sendo utilizado");
@@ -112,15 +104,15 @@ namespace AspNetWebApi.Controllers
                             }
 
 
-                            var clientModel = new Models.Cliente()
+                            var clientModel = new Models.Client()
                             {
                                 Name = newClient.Name,
                                 Email = newClient.Email,
                             };
 
-                            context.Clientes.Add(clientModel);
+                            context.Clients.Add(clientModel);
                             context.SaveChanges();
-                            var message = string.Format("Sucess");
+                            var message = string.Format("Cliente adicionado com sucesso!");
                             return Request.CreateErrorResponse(HttpStatusCode.OK, message);
                         }
 
@@ -148,40 +140,37 @@ namespace AspNetWebApi.Controllers
 
         }
 
-        public class Pedido
-        {
-            public long Id { get; set; }
-
-            public long Number { get; set; }
-            public double FinalCost { get; set; }
-
-            public DateTime Date { get; set; }
-
-
-        }
+       
 
         [HttpGet]
         [Route("api/clients/{id}/orders")]
-        public List<Pedido> Pedidos(long id)
+        public List<Order> Pedidos(long id)
         {
             using(var context = new Contexto())
             {
-                var listOrders = new List<Pedido>();
+                var listOrders = new List<Order>();
 
-                var clientModel = context.Clientes.Include(x => x.Orders).Where(x => x.Id == id).Single();
+                var clientModel = context.Clients.Include(x => x.Orders).Where(x => x.Id == id).Single();
 
-                foreach(var pedidoModel in clientModel.Orders)
+                foreach(var orderModel in clientModel.Orders)
                 {
-                    var pedidoProxy = new Pedido()
+                    List<Product> ProductsList = new List<Product>();
+                    var orders = context.Orders.Where(order => order.Id == orderModel.Id).SelectMany(products => products.Products).ToList();
+
+                    foreach (var products in orders)
                     {
-                        Number = pedidoModel.Number,
-                        FinalCost = pedidoModel.FinalCost,
-                        
-                        Date = pedidoModel.Date,
-                        Id = pedidoModel.Id
+                        ProductsList.Add(new Product(products.Description, products.Value, products.Image));
+                    }
+
+                    var pedidoProxy = new Order()
+                    {
+                        Number = orderModel.Number,
+                        FinalCost = orderModel.FinalCost,
+                        Date = DateTime.Now,
+                        Id = orderModel.Id
                     };
 
-                    listOrders.Add(pedidoProxy);
+                    listOrders.Add(new Order(orderModel.Id, orderModel.Discount, orderModel.Cost, orderModel.FinalCost, orderModel.Number, ProductsList, new Client(clientModel.Id, clientModel.Name, clientModel.Email), orderModel.Date));
 
                 }
 

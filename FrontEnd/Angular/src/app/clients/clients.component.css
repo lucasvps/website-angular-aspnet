@@ -4,6 +4,6 @@ table {
   
   table, th, td {
     border: 1px solid black;
-    text-align: start;
+    text-align: right;
     padding: 15px;
   }

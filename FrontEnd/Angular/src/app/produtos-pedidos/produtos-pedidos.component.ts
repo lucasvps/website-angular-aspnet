@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoModel } from '../produtos/produto.model';
-import { ProdutoService } from '../produto.service';
+import { ProdutoService } from '../../produto.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./produtos-pedidos.component.css']
 })
 export class ProdutosPedidosComponent implements OnInit {
+
+  displayedColumns: string[] = ['description', 'value'];
 
   produtos: Array<ProdutoModel> = new Array();
 
@@ -30,5 +32,9 @@ export class ProdutosPedidosComponent implements OnInit {
   ngOnInit() {
     this.listarProdutosPedido()
   }
+
+  home(){
+		this.router.navigate(['home']);
+	}
 
 }

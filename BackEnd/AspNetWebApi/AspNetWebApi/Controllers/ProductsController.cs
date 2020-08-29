@@ -1,4 +1,5 @@
 ﻿using AspNetWebApi.Context;
+using AspNetWebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -7,46 +8,30 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
+
 
 namespace AspNetWebApi.Controllers
 {
+
+
     public class ProductsController : ApiController
     {
 
-        public class Produto
-        {
-
-           
-
-            public long  Id { get; set; }
-
-            public string Description { get; set; }
-
-            public double Value { get; set; }
-
-            public string ImagePath { get; set; }
-
-
-
-        }
-
         [HttpGet]
-        public List<Produto> Get()
+        public List<Product> Get()
         {
-            using(var context = new Contexto())
+            using (var context = new Contexto())
             {
-                var productsModel = context.Produtos.ToList();
-                var productsList = new List<Produto>();
+                var productsModel = context.Products.ToList();
+                var productsList = new List<Product>();
 
-                foreach(var productModel in productsModel)
+                foreach (var productModel in productsModel)
                 {
-                    var product = new Produto()
+                    var product = new Product()
                     {
                         Id = productModel.Id,
-                        ImagePath = productModel.ImagePath,
+                        Image = productModel.Image,
                         Description = productModel.Description,
                         Value = productModel.Value
                     };
@@ -60,19 +45,19 @@ namespace AspNetWebApi.Controllers
         }
 
         [HttpGet]
-        public Produto Get(long id)
+        public Product Get(long id)
         {
             using (var context = new Contexto())
             {
-                var productModel = context.Produtos
+                var productModel = context.Products
                     .Where(x => x.Id == id)
                     .Single();
 
 
-                var product = new Produto()
+                var product = new Product()
                 {
                     Id = productModel.Id,
-                   
+
                     Description = productModel.Description,
                     Value = productModel.Value
 
@@ -83,19 +68,17 @@ namespace AspNetWebApi.Controllers
         }
 
 
+
         public class NewProduct
         {
-            public string ImagePath { get; set; }
+            public string Image { get; set; }
             public string Description { get; set; }
             public double Value { get; set; }
-
-           // public HttpPostedFileBase ImageFile { get; set; }
-
 
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> Post()
+        public async Task<HttpResponseMessage> Post(NewProduct newProduct)
         {
 
             try
@@ -104,77 +87,23 @@ namespace AspNetWebApi.Controllers
                 using (var context = new Contexto())
                 {
 
-                    Dictionary<string, object> dict = new Dictionary<string, object>();
-
-                    var httpRequest = HttpContext.Current.Request;
-
-                    foreach (string file in httpRequest.Files)
+                    var productModel = new Models.Product()
                     {
-                        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
 
-                        var postedFile = httpRequest.Files[file];
-                        if (postedFile != null && postedFile.ContentLength > 0)
-                        {
+                        Image = newProduct.Image,
+                        Description = newProduct.Description,
+                        Value = newProduct.Value
+                    };
 
-                            int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+                    context.Products.Add(productModel);
+                    context.SaveChanges();
 
-                            IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
-                            var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
-                            var extension = ext.ToLower();
-                            if (!AllowedFileExtensions.Contains(extension))
-                            {
-
-                                var messages = string.Format("Please Upload image of type .jpg,.gif,.png.");
-
-                                dict.Add("error", messages);
-                                return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                            }
-                            else if (postedFile.ContentLength > MaxContentLength)
-                            {
-
-                                var messages = string.Format("Please Upload a file upto 1 mb.");
-
-                                dict.Add("error", messages);
-                                return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                            }
-                            else
-                            {
-
-                                var filePath = HttpContext.Current.Server.MapPath("~/Images/" + postedFile.FileName);
-                                //newProduct.ImagePath = filePath;
-
-                                var description = httpRequest.Form.Get("Description");
-                                var value = httpRequest.Form.Get("Value");
-
-                                var productModel = new Models.Produto()
-                                {
-
-                                    ImagePath = postedFile.FileName,
-                                    Description = description,
-                                    Value = Convert.ToDouble(value),
-                                };
-
-                                context.Produtos.Add(productModel);
-                                context.SaveChanges();
-                                postedFile.SaveAs(filePath);
-
-                            }
-                        }
-                        
-
-                        var message1 = string.Format("Product and Image Updated Successfully.");
-                        return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
-                    }
-
-                    
-
-
-                    
-                    //var message = string.Format("Produto cadastrado com sucesso");
-                    //return Request.CreateErrorResponse(HttpStatusCode.OK, message);
-
-                    
                 }
+
+                var message1 = string.Format("Produto adicionado com sucesso!");
+                return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+
+
             }
             catch (DbEntityValidationException ex)
             {
@@ -191,9 +120,12 @@ namespace AspNetWebApi.Controllers
 
             var error = string.Format("Alguma coisa deu errado, tente novamente!");
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
+
+
+
+
         }
-
-
-
     }
+
 }
+

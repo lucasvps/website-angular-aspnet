@@ -11,16 +11,13 @@ namespace AspNetWebApi.Context
 {
     public class Contexto : DbContext
     {
-        public DbSet<Contato> Contatos { get; set; }
-        public DbSet<Mensagem> Mensagens { get; set; }
+       
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        public DbSet<Pedido> Pedidos { get; set; }
-
-        public DbSet<ProdutoPedido> ProdutoPedidos { get; set; }   
+        public DbSet<Order> Orders { get; set; }   
 
 
 
@@ -31,13 +28,7 @@ namespace AspNetWebApi.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-            
-
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            modelBuilder.Entity<ProdutoPedido>().HasKey(cs => new {cs.ProdutoId, cs.PedidoId});
-
-            
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();            
 
         }
 

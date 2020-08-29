@@ -52,4 +52,8 @@ export class CadastroMensagemComponent implements OnInit {
 
 	}
 
+	home(){
+		this.router.navigate(['home']);
+	}
+
 }

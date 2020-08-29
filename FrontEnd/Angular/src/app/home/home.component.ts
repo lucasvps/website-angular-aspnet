@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
 		this.router.navigate(['clientes']);
 	}
 
+	
+
 	produtos() {
 		this.router.navigate(['produtos']);
 	}

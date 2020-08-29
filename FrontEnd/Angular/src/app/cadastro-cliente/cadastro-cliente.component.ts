@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ClientModel } from '../clients/client.model';
-import { ClientsService } from '../clients.service';
+import { ClientsService } from '../../clients.service';
 
 
 @Component({
@@ -59,4 +59,8 @@ export class CadastroClienteComponent implements OnInit {
 			
 		})
 	}
+
+	home(){
+		this.router.navigate(['home']);
+	  }
 }

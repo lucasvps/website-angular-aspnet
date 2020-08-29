@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoModel } from '../produtos/produto.model';
-import { ProdutoService } from '../produto.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClientModel } from '../clients/client.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ProdutoService } from 'src/produto.service';
 
 class NovoPedido {
   public idClient: number;
@@ -24,11 +24,11 @@ class ProdutoPedido {
 })
 export class CadastroPedidoComponent implements OnInit {
 
+  displayedColumns: string[] = ['description', 'value', 'checkbox'];
+
   controleDesconto: FormGroup;
 
   produtos: Array<ProdutoModel> = new Array();
-
-  carrinho: Array<ProdutoModel> = new Array();
 
   carrinhoIds: Array<number> = new Array();
 
@@ -64,33 +64,31 @@ export class CadastroPedidoComponent implements OnInit {
   getProduto(produto: ProdutoModel) {
     if (this.carrinhoIds.indexOf(produto.Id) != -1) {
       var index = this.carrinhoIds.indexOf(produto.Id);
-      this.carrinho.splice(index, 1)
       this.carrinhoIds.splice(index, 1);
       this.valorTotal -= (produto.Value);
     } else {
       this.carrinhoIds.push(produto.Id);
-      this.carrinho.push(produto);
       this.valorTotal += (produto.Value);
     }
   }
 
   finalizarPedido() {
-    if (this.carrinho.length > 0) {
+    console.log(this.carrinhoIds.length);
+    if (this.carrinhoIds.length > 0) {
       var pedido = new NovoPedido();
       pedido.idClient = this.IdClient;
       pedido.cost = this.valorTotal;
       pedido.discount = this.Desconto;
 
-      this.http.post("http://localhost:49493/api/pedidos", pedido).subscribe((result: number) => {
-        this.pedidoId = result;
-        this.carrinho.forEach(produto => {
-          var prod = new ProdutoPedido();
-          prod.PedidoId = this.pedidoId;
-          prod.ProdutoId = produto.Id;
-          this.http.post("http://localhost:49493/api/produtopedido", prod).subscribe((result: ProdutoPedido) => {
-            this.router.navigate(['cliente/' + this.IdClient + "/pedidos"]);
-          });
-        });
+      var headers = new HttpHeaders().append("Content-Type", "application/json")
+
+      var params  = new HttpParams().set("client", (this.IdClient).toString()).set("discount", this.Desconto.toString());
+
+      var produtos = JSON.stringify(this.carrinhoIds);
+      console.log(produtos);
+
+      this.http.post("http://localhost:49493/api/orders", produtos, {params, headers}).subscribe(result => {
+        this.router.navigate(['cliente/' + this.IdClient + "/pedidos"]);
       });
     }
 
@@ -123,5 +121,9 @@ export class CadastroPedidoComponent implements OnInit {
 
     this.listarProdutos()
   }
+
+  home(){
+		this.router.navigate(['home']);
+	}
 
 }

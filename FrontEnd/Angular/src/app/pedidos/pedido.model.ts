@@ -3,4 +3,5 @@ export class PedidoModel{
     Number: number;
     FinalCost: number;
     Date: string;
+    Discount: number;
 }

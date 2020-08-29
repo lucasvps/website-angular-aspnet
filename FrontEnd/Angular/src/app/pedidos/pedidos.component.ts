@@ -11,6 +11,8 @@ import { PedidoModel } from './pedido.model';
 })
 export class PedidosComponent implements OnInit {
 
+  displayedColumns: string[] = ['serialNumber', 'date','discount', 'finalCost','products', ];
+
   pedidos: Array<PedidoModel> = new Array();
 
   cliente: ClientModel = new ClientModel();

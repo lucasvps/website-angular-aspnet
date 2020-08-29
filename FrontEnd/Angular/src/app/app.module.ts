@@ -8,19 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImports } from './MaterialImports';
 
 import { AppComponent } from './app.component';
-import { CadastroContatoComponent } from './cadastro-contato/cadastro-contato.component';
 import { HomeComponent } from './home/home.component';
-import { MensagensComponent } from './mensagens/mensagens.component';
 import { CadastroMensagemComponent } from './cadastro-mensagem/cadastro-mensagem.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
-import { ClientsService } from './clients.service';
+import { ClientsService } from '../clients.service';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { CadastroPedidoComponent } from './cadastro-pedido/cadastro-pedido.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
-import { ProdutoService } from './produto.service';
+import { ProdutoService } from '../produto.service';
 import { ProdutosPedidosComponent } from './produtos-pedidos/produtos-pedidos.component';
+import { MatTableModule, MatMenuModule, } from '@angular/material';
 
 
 
@@ -42,8 +41,6 @@ const appRoutes: Routes = [
 @NgModule({
 	declarations: [
 		AppComponent,
-		CadastroContatoComponent,
-		MensagensComponent,
 		CadastroMensagemComponent,
 		ClientsComponent,
 		CadastroClienteComponent,
@@ -61,7 +58,9 @@ const appRoutes: Routes = [
 		BrowserAnimationsModule,
 		MaterialImports,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		MatTableModule   ,
+		MatMenuModule,
 	],
 	providers: [ClientsService, ProdutoService],
 	bootstrap: [AppComponent]
