@@ -19,12 +19,12 @@
 		  <mat-cell *matCellDef="let produtos"> {{produtos.Description}} </mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="valor">
-		  <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+		  <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
 		  <mat-cell *matCellDef="let produtos">R$ {{produtos.Value}} </mat-cell>
 		</ng-container>
 		<ng-container matColumnDef="imagem">
 			<mat-header-cell *matHeaderCellDef> Imagem </mat-header-cell>
-			<mat-cell *matCellDef="let produtos"></mat-cell>
+			<mat-cell *matCellDef="let produtos"><img style="display:block; padding: 15px;" width="50%" height="50%" src="{{produtos.Image}}" ></mat-cell>
 		</ng-container>
 		<mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
 		<mat-row *matRowDef="let row; columns: colunas;"></mat-row>

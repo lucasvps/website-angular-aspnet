@@ -21,6 +21,11 @@ export class ProdutosComponent implements OnInit {
   listarProdutos(){
     this.produtoService.listarProdutos().subscribe(produtos => {
       this.produtos = produtos;
+      produtos.forEach(produto => {
+        if (produto.Image == null){
+          produto.Image = 'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png';
+        }
+      });
     });
   }
 

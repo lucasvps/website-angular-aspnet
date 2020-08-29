@@ -28,8 +28,7 @@ export class CadastroProdutoComponent implements OnInit {
 		this.form = this.formBuilder.group({
 			descricao: ['', [Validators.minLength(10), Validators.maxLength(45), this.noWhitespaceValidator]],
 			valor: ['', [Validators.required, Validators.min(1)]],
-			imageInput: []
-
+			urlImagem: []
 		});
 	}
 
@@ -50,7 +49,7 @@ export class CadastroProdutoComponent implements OnInit {
 		//this.produto.Name = this.form.get('nome').value;
 		this.produto.Description = this.form.get('descricao').value;
 		this.produto.Value = this.form.get('valor').value;
-		this.produto.ImageFile = this.imagemProduto;
+		this.produto.Image = this.form.get('urlImagem').value;
 
 		console.log(this.produto);
 		this.produtoService.novoProduto(this.produto).subscribe(produto => {
